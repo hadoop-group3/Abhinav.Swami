@@ -147,17 +147,17 @@ public class HW2_Part2 {
 		// Print the results
 		System.out.println("Total symbols available in both the files = " + stockInfo.count());
 
-		List<Tuple3<String, Double, Double>> top10Growth = sortedByDiv.take(10);
+		List<Tuple3<String, Double, Double>> top10Dividends = sortedByDiv.take(10);
 
-		System.out.println("Top 10 stock by growth");
-		for (Tuple3<String, Double, Double> element : top10Growth)
-			System.out.println(element._1() + "," + element._2() + "%");
-
-		List<Tuple3<String, Double, Double>> top10Dividends = sortedByGrowth.take(10);
-
-		System.out.println("Top 10 stocks by dividend");
+		System.out.println("Top 10 stock by dividend");
 		for (Tuple3<String, Double, Double> element : top10Dividends)
-			System.out.println(element._1() + "," + element._3());
+			System.out.println(element._1() + "," + element._2());
+
+		List<Tuple3<String, Double, Double>> top10Growth = sortedByGrowth.take(10);
+
+		System.out.println("Top 10 stocks by growth");
+		for (Tuple3<String, Double, Double> element : top10Growth)
+			System.out.println(element._1() + "," + element._3() + "%");
 
 		// Save the results
 		sortedByGrowth.saveAsTextFile(outputPath);
