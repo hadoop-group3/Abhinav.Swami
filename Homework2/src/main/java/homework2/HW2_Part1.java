@@ -159,6 +159,7 @@ public class HW2_Part1 {
 							invalidRecords.add(1);
 
 						if (tokens[divYield].equals("")) {
+							noDivRecords.add(1);
 							tokens[divYield] = new String("0.0");
 						}
 						if (tokens[priceByEarning].equals("")) {
@@ -217,9 +218,9 @@ public class HW2_Part1 {
 					}
 				});
 
-		System.out.println(filteredInfo.count());
-		System.out.println("Total number of entries = " + validRecords.value());
+		System.out.println("Total number of entries = " + filteredInfo.count());
 		System.out.println("Invalid entries = " + invalidRecords.value());
+		System.out.println("Entries with no dividend = " + noDivRecords.value());
 		/*-
 		 * TODO You may want to sort the tuples before you write them to file.
 		 * 
