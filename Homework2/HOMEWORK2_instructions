@@ -1,0 +1,62 @@
+Homework 2 involves completing 2 programs in spark.  
+--------------------------------------------------
+--------------------------------------------------
+For part 1, Use HW2_1.java as your starting point.
+--------------------------------------------------
+
+Your program should:
+
+Read in the SP500-constituents-financials.csv file
+
+Parse the file for Symbol, Dividend, Price/Earnings
+
+ - If Dividend is an empty string (""), then change the value to "0.0".
+
+-  If Price/Earning is an empty string (""), then change the value to "-Infinity" using Float.NEGATIVE_INFINITY 
+
+-  If either Dividend or Price/Earnings can not be parsed as a Float, indicate a faulty record and filter it out.
+
+OUTPUT:
+
+Save the information <symbol, dividend, priceEarnings> to a file.  When complete, the file should contain about 489 records.
+
+Print the accumulator information to the console.
+
+SAMPLE OUTPUT:
+
+An example of an acceptable output file is shown in the output directory under "hw2_1_expectedOutput"
+
+-------------------------------------------------
+Part 2 - create a new class called HW2_Part2.java
+-------------------------------------------------
+
+You will use two inputs, companylistNASDAQ.csv and SP500-consituents-financials.csv.
+
+Join these two files using the "symbol" column.  
+
+Answer these questions:
+ - how many stocks are both on the NASDAQ and in the SP500?
+ 
+ - using the output you've generated above, discover the following:
+   - what are the top 10 stocks with the greatest percentage increase over a 52-week period?
+   - what are the top 10 stocks with the highest dividends?
+   
+OUTPUT
+	Using the results of your join:
+	- list each symbol, including the information about each symbol from both files
+		-- exclude symbols that are not found in both files
+		
+	- list the top 10 stocks with the greatest percentage increase over a 52-week period
+	- list the top 10 stocks with the highest dividends
+	
+------------------------------------------------------------------------------------------
+Turn in your code.  Do not turn in anything else.
+------------------------------------------------------------------------------------------
+
+	
+   
+
+
+
+
+
