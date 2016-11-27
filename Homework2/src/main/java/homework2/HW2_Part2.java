@@ -1,6 +1,7 @@
 package homework2;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -116,8 +117,8 @@ public class HW2_Part2 {
 							low = "0.0";
 						if (high.equals("n/a"))
 							high = "0.0";
-						Double increase = (Double.parseDouble(high) - Double.parseDouble(low))
-								/ Double.parseDouble(low);
+						Double increase = ((Double.parseDouble(high) - Double.parseDouble(low))
+								/ Double.parseDouble(low)) * 100;
 						return new Tuple3<String, Double, Double>(tup._1, Double.parseDouble(dividend), increase);
 					}
 
@@ -131,7 +132,7 @@ public class HW2_Part2 {
 					public Double call(Tuple3<String, Double, Double> info) throws Exception {
 						return info._3();
 					}
-				}, false, 1);
+				}, false, 1);// false = Descending order
 
 		// Sort by highest dividend value
 		JavaRDD<Tuple3<String, Double, Double>> sortedByDiv = stockInfo
@@ -141,12 +142,22 @@ public class HW2_Part2 {
 					public Double call(Tuple3<String, Double, Double> info) throws Exception {
 						return info._2();
 					}
-				}, false, 1);
+				}, false, 1);// false = Descending order
 
 		// Print the results
 		System.out.println("Total symbols available in both the files = " + stockInfo.count());
-		System.out.println(sortedByGrowth.take(10));
-		System.out.println(sortedByDiv.take(10));
+
+		List<Tuple3<String, Double, Double>> top10Growth = sortedByDiv.take(10);
+
+		System.out.println("Top 10 stock by growth");
+		for (Tuple3<String, Double, Double> element : top10Growth)
+			System.out.println(element._1() + "," + element._2() + "%");
+
+		List<Tuple3<String, Double, Double>> top10Dividends = sortedByGrowth.take(10);
+
+		System.out.println("Top 10 stocks by dividend");
+		for (Tuple3<String, Double, Double> element : top10Dividends)
+			System.out.println(element._1() + "," + element._3());
 
 		// Save the results
 		sortedByGrowth.saveAsTextFile(outputPath);
